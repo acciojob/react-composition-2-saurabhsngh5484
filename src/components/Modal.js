@@ -1,22 +1,19 @@
-import React, { useState } from "react";
-import Modal from "./Modal";
+import React, { useEffect, useRef } from "react";
 
-const Button = () => {
-    const [show, setShow] = useState(false);
 
-    function showChange() {
-        setShow(false);
-    }
+
+const Modal = ({ show }) => {
+    
+    document.addEventListener("click", show)
 
     return (
-        <div>
-            <button onClick={() => {setShow(true)}}>Show Modal</button>
-            {
-                show &&
-                <Modal show={() => { showChange() }}></Modal>
-            }
+        <div className="modal-overlay">
+            <div className="modal">
+                <button className="modal-close" onClick={() => { show() }}>Close</button>
+                <p>This is the content of the modal.</p>
+            </div>
         </div>
     )
 }
 
-export default Button;
+export default Modal;
